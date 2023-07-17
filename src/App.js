@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Developing App FOr Family Choice
         </a>
       </header>
     </div>
