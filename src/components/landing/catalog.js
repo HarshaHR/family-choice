@@ -2,12 +2,12 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/esm/Container';
-import cokecola from "../../images/Fizzy-Drinks-300x300.webp";
-import catering from  "../../images/Catering-Groceries-300x300.webp";
-import dental from "../../images/Dental-Care.webp";
-import dips from "../../images/Dips-300x300.webp";
-import softdrinks from  "../../images/Soft-Drinks-300x300.webp";
-import alcohol from   "../../images/exclusive-drinks-range-1-300x300.webp";
+import cokecola from "../../images/Fizzy-Drinks-300x300.png";
+import catering from  "../../images/Catering-Groceries-300x300.png";
+import dental from "../../images/Dental-Care.png";
+import dips from "../../images/Dips-300x300.png";
+import softdrinks from  "../../images/Soft-Drinks-300x300.png";
+import alcohol from   "../../images/exclusive-drinks-range-1-300x300.png";
 import { styled } from 'styled-components';
 
 const StyledContainer = styled(Container)`
@@ -58,12 +58,6 @@ export const Catalog = () => {
         <Card.Img variant="top" src={softdrinks}/>
         <Card.Body>
           <Card.Title>Soft Drinks</Card.Title>
-        </Card.Body>
-      </Card>
-      <Card className="text-center">
-        <Card.Img variant="top" src={alcohol}/>
-        <Card.Body>
-          <Card.Title>Alcohol</Card.Title>
         </Card.Body>
       </Card>
     </CardGroup>
