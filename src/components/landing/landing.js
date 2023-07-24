@@ -5,9 +5,9 @@ import Stack from 'react-bootstrap/Stack';
 
 const Landing = () => {
   return (
-    <Stack gap={3}>
-      <Catalog />
+    <Stack>
       <CarouselSection />
+      <Catalog />
     </Stack>
   )
 }

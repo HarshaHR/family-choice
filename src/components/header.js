@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 const Header = () => {
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+      <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" fixed="top">
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -16,7 +16,7 @@ const Header = () => {
               width="60"
               height="60"
               className="d-inline-block align-top"
-              alt="React Bootstrap logo"
+              alt="Family Choice"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

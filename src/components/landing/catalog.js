@@ -26,6 +26,7 @@ img{
 export const Catalog = () => {
   return (
     <StyledContainer fluid>
+      <h2 style={{textAlign: "center", paddingBottom:"1rem"}}>Top Categories</h2>
     <CardGroup>
       <StyledCard className="text-center">
         <Card.Img variant="top" src={cokecola}/>
