@@ -4,9 +4,9 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { Protected } from './components/Protected';
 import { RequireAuth } from './components/RequireAuth';
 import { ProtectedSecond } from './components/ProtectSecond';
-import  Landing  from './components/landing/Landing';
-import {Layout} from "./components/Layout";
-import {Login} from "./components/Login";
+import  Landing  from './components/landing/landing';
+import {Layout} from "./components/layout";
+import {Login} from "./components/login";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
