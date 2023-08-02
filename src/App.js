@@ -1,13 +1,15 @@
 //App.js
 import { Authenticator } from '@aws-amplify/ui-react';
 
-import { Protected } from './components/Protected';
+import { Shop } from './components/shop';
 import { RequireAuth } from './components/RequireAuth';
-import { ProtectedSecond } from './components/ProtectSecond';
 import  Landing  from './components/landing/landing';
 import {Layout} from "./components/layout";
 import {Login} from "./components/login";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CreateProduct } from './components/Product/CreateProduct';
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 
 
 function MyRoutes() {
@@ -17,18 +19,18 @@ function MyRoutes() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
           <Route
-            path="/protected"
+            path="/shop"
             element={
               <RequireAuth>
-                <Protected />
+                <Shop />
               </RequireAuth>
             }
           />
           <Route
-            path="/protected2"
+            path="/shop/create"
             element={
               <RequireAuth>
-                <ProtectedSecond />
+                <CreateProduct />
               </RequireAuth>
             }
           />
@@ -42,7 +44,9 @@ function MyRoutes() {
 function App() {
   return (
     <Authenticator.Provider>
+       <Provider store={store}>
       <MyRoutes />
+      </Provider>
     </Authenticator.Provider>
   );
 }

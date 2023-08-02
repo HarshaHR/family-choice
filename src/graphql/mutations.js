@@ -1,48 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createNote = /* GraphQL */ `
-  mutation CreateNote(
-    $input: CreateNoteInput!
-    $condition: ModelNoteConditionInput
+export const createProduct = /* GraphQL */ `
+  mutation CreateProduct(
+    $input: CreateProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    createNote(input: $input, condition: $condition) {
+    createProduct(input: $input, condition: $condition) {
       id
-      name
+      productName
+      productCategory
+      productSubCategory
       description
       image
+      price
+      availableQuantity
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const updateNote = /* GraphQL */ `
-  mutation UpdateNote(
-    $input: UpdateNoteInput!
-    $condition: ModelNoteConditionInput
+export const updateProduct = /* GraphQL */ `
+  mutation UpdateProduct(
+    $input: UpdateProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    updateNote(input: $input, condition: $condition) {
+    updateProduct(input: $input, condition: $condition) {
       id
-      name
+      productName
+      productCategory
+      productSubCategory
       description
       image
+      price
+      availableQuantity
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const deleteNote = /* GraphQL */ `
-  mutation DeleteNote(
-    $input: DeleteNoteInput!
-    $condition: ModelNoteConditionInput
+export const deleteProduct = /* GraphQL */ `
+  mutation DeleteProduct(
+    $input: DeleteProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    deleteNote(input: $input, condition: $condition) {
+    deleteProduct(input: $input, condition: $condition) {
       id
-      name
+      productName
+      productCategory
+      productSubCategory
       description
       image
+      price
+      availableQuantity
       createdAt
       updatedAt
       __typename

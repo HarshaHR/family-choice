@@ -37,9 +37,9 @@ export function Layout() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link onClick={() => navigate('/')}>Home</Nav.Link>
-              <Nav.Link onClick={() => navigate('/protected')}>Shop</Nav.Link>
-              <Nav.Link onClick={() => navigate('/protected')}>About Us</Nav.Link>
-              <Nav.Link onClick={() => navigate('/protected')}>Contact Us</Nav.Link>
+              <Nav.Link onClick={() => navigate('/shop')}>Shop</Nav.Link>
+              <Nav.Link onClick={() => navigate('/about')}>About Us</Nav.Link>
+              <Nav.Link onClick={() => navigate('/contact')}>Contact Us</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link eventKey={2}>
