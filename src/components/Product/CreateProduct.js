@@ -14,16 +14,8 @@ import {
 
 import { createProduct as createProductMutation } from "../../graphql/mutations";
 import { API, Storage } from "aws-amplify";
-import { listProducts } from "../../graphql/queries";
 
 export const CreateProduct = () => {
-  async function fetchProducts() {
-    const apiData = await API.graphql({ query: listProducts });
-    const productsFromAPI = apiData.data;
-    console.log("Fetch", productsFromAPI);
-  }
-
-  fetchProducts();
 
   async function createNewProduct(event) {
     event.preventDefault();
@@ -41,12 +33,11 @@ export const CreateProduct = () => {
       availableQuantity: form.get("availableQuantity"),
     };
 
-    if (!!data.image) await Storage.put(data.name, image);
+    if (!!data.image) await Storage.put(data.productName, image);
     await API.graphql({
       query: createProductMutation,
       variables: { input: data },
     });
-    fetchProducts();
     event.target.reset();
   }
 
