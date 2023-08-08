@@ -8,6 +8,9 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../images/logo.png";
 import Footer from './Footer';
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export function Layout() {
   const { route, signOut } = useAuthenticator((context) => [
@@ -46,7 +49,14 @@ export function Layout() {
               {route !== 'authenticated' ? (
           <Button variant="primary" onClick={() => navigate('/login')}>Login</Button>
         ) : (
-          <Button variant="primary" onClick={() => logOut()}>Logout</Button>
+
+          <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="basic-nav-dropdown">
+              <NavDropdown.Item  onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
+              <NavDropdown.Item  onClick={() => logOut()}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+
         )}
         
               </Nav.Link>

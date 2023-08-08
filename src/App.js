@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CreateProduct } from './components/Product/CreateProduct';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import { Profile } from './components/User/Profile';
 
 
 function MyRoutes() {
@@ -31,6 +32,14 @@ function MyRoutes() {
             element={
               <RequireAuth>
                 <CreateProduct />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <RequireAuth>
+                <Profile />
               </RequireAuth>
             }
           />
