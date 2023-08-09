@@ -11,6 +11,7 @@ import { CreateProduct } from './components/Product/CreateProduct';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import { Profile } from './components/User/Profile';
+import ProductInfo from './components/Product/ProductInfo';
 
 
 function MyRoutes() {
@@ -27,6 +28,11 @@ function MyRoutes() {
               </RequireAuth>
             }
           />
+          <Route path="/shop/:productId" exact element={
+              <RequireAuth>
+                <ProductInfo />
+              </RequireAuth>
+            } />
           <Route
             path="/shop/create"
             element={
