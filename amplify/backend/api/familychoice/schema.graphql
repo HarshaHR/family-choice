@@ -8,3 +8,15 @@ type Product @model @auth(rules: [{ allow: public }] ) {
   price: Float!
   availableQuantity: Int!
 }
+
+type Category @model {
+  id: ID!
+  categoryName: String!
+  subCategory: [SubCategory] @hasMany(indexName: "byCategory", fields: ["id"])
+}
+
+type SubCategory @model {
+  id: ID!
+  categoryID: ID! @index(name: "byCategory", sortKeyFields: ["subCategoryName"])
+  subCategoryName: String!
+}

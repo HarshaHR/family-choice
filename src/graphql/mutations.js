@@ -61,3 +61,126 @@ export const deleteProduct = /* GraphQL */ `
     }
   }
 `;
+export const createCategory = /* GraphQL */ `
+  mutation CreateCategory(
+    $input: CreateCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    createCategory(input: $input, condition: $condition) {
+      id
+      categoryName
+      subCategory {
+        items {
+          id
+          categoryID
+          subCategoryName
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateCategory = /* GraphQL */ `
+  mutation UpdateCategory(
+    $input: UpdateCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    updateCategory(input: $input, condition: $condition) {
+      id
+      categoryName
+      subCategory {
+        items {
+          id
+          categoryID
+          subCategoryName
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteCategory = /* GraphQL */ `
+  mutation DeleteCategory(
+    $input: DeleteCategoryInput!
+    $condition: ModelCategoryConditionInput
+  ) {
+    deleteCategory(input: $input, condition: $condition) {
+      id
+      categoryName
+      subCategory {
+        items {
+          id
+          categoryID
+          subCategoryName
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createSubCategory = /* GraphQL */ `
+  mutation CreateSubCategory(
+    $input: CreateSubCategoryInput!
+    $condition: ModelSubCategoryConditionInput
+  ) {
+    createSubCategory(input: $input, condition: $condition) {
+      id
+      categoryID
+      subCategoryName
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateSubCategory = /* GraphQL */ `
+  mutation UpdateSubCategory(
+    $input: UpdateSubCategoryInput!
+    $condition: ModelSubCategoryConditionInput
+  ) {
+    updateSubCategory(input: $input, condition: $condition) {
+      id
+      categoryID
+      subCategoryName
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteSubCategory = /* GraphQL */ `
+  mutation DeleteSubCategory(
+    $input: DeleteSubCategoryInput!
+    $condition: ModelSubCategoryConditionInput
+  ) {
+    deleteSubCategory(input: $input, condition: $condition) {
+      id
+      categoryID
+      subCategoryName
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
