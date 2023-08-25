@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { toast, ToastContainer } from "react-toastify";
+import loader from "../../images/loader.gif";
 
 import {
   Text,
@@ -14,11 +16,15 @@ import {
 
 import { createProduct as createProductMutation } from "../../graphql/mutations";
 import { API, Storage } from "aws-amplify";
+import * as queries from "../../graphql/queries";
 
 export const CreateProduct = () => {
 
+
   async function createNewProduct(event) {
     event.preventDefault();
+window.scrollTo(0, 0);
+    sethideLoader(false)
     const form = new FormData(event.target);
 
     const image = form.get("image");
@@ -38,11 +44,48 @@ export const CreateProduct = () => {
       query: createProductMutation,
       variables: { input: data },
     });
+    sethideLoader(true)
+      toast.success("Added Product !", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     event.target.reset();
+  }
+  const [categoryList, setCategoryList] = useState([]);
+  const [subCategoryList, setSubCategoryList] = useState([]);
+  const [hideLoader, sethideLoader] = useState(true)
+
+  async function fetchCategories() {
+    const apiData = await API.graphql({ query: queries.listCategories });
+    const categoryFromAPI = apiData.data.listCategories.items;
+
+    setCategoryList(categoryFromAPI);
+    console.log("Fetch", categoryFromAPI);
+  }
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  async function handleCategoryChange(event) {
+    const productId = event.target.value;
+
+    let tempSubCategory = [];
+    const apiData = await API.graphql({ query: queries.listSubCategories });
+
+    for (let i = 0; i < apiData.data.listSubCategories.items.length; i++) {
+      if (apiData.data.listSubCategories.items[i].categoryID == productId) {
+        tempSubCategory.push(apiData.data.listSubCategories.items[i]);
+      }
+    }
+    setSubCategoryList(tempSubCategory);
   }
 
   return (
     <Container>
+      <ToastContainer />
+      <Row style={{ margin: "1rem 0 0 0", justifyContent:"center" }} hidden={hideLoader}>
+        <img src={loader} style={{height:"50px", width:"80px"}} />
+      </Row>
       <Row style={{ margin: "3rem 0 1rem 0" }}>
         <h5>Add Product</h5>
       </Row>
@@ -54,7 +97,11 @@ export const CreateProduct = () => {
               <TextField
                 name="productName"
                 placeholder="Product Name"
-                label={<Text style={{fontWeight:"bold", fontSize:"1.125rem"}}>Product Name</Text>}
+                label={
+                  <Text style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                    Product Name
+                  </Text>
+                }
                 required
               />
             </Form.Group>{" "}
@@ -63,10 +110,22 @@ export const CreateProduct = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <SelectField  label={<Text style={{fontWeight:"bold", fontSize:"1.125rem"}}>Product Category</Text>} name="productCategory">
-                <option value="drinks">Drinks</option>
-                <option value="groceries">Groceries</option>
-                <option value="fruits">Fruis</option>
+              <SelectField
+                label={
+                  <Text style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                    Product Category
+                  </Text>
+                }
+                name="productCategory"
+                onChange={handleCategoryChange}
+              >
+                {categoryList.map((category, index) => {
+                  return (
+                    <option value={category.id} key={index}>
+                      {category.categoryName}
+                    </option>
+                  );
+                })}
               </SelectField>
             </Form.Group>{" "}
           </Col>
@@ -75,12 +134,20 @@ export const CreateProduct = () => {
           <Col>
             <Form.Group className="mb-3">
               <SelectField
-                 label={<Text style={{fontWeight:"bold", fontSize:"1.125rem"}}>Product Sub Category</Text>}
+                label={
+                  <Text style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                    Product Sub Category
+                  </Text>
+                }
                 name="productSubCategory"
               >
-                <option value="drinks">Drinks</option>
-                <option value="groceries">Groceries</option>
-                <option value="fruits">Fruis</option>
+                {subCategoryList.map((subcategory, index) => {
+                  return (
+                    <option value={subcategory.id} key={index}>
+                      {subcategory.subCategoryName}
+                    </option>
+                  );
+                })}
               </SelectField>
             </Form.Group>{" "}
           </Col>
@@ -91,7 +158,11 @@ export const CreateProduct = () => {
               <TextAreaField
                 autoComplete="off"
                 isRequired={false}
-                label={<Text style={{fontWeight:"bold", fontSize:"1.125rem"}}>Product Description</Text>}
+                label={
+                  <Text style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                    Product Description
+                  </Text>
+                }
                 labelHidden={false}
                 name="productDescription"
                 placeholder="Product Description"
@@ -105,7 +176,9 @@ export const CreateProduct = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label style={{fontWeight:"bold", fontSize:"1.125rem"}}>Product Image</Form.Label>
+              <Form.Label style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                Product Image
+              </Form.Label>
               <Form.Control
                 type="file"
                 placeholder="product image"
@@ -117,7 +190,9 @@ export const CreateProduct = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label style={{fontWeight:"bold", fontSize:"1.125rem"}}>Product Price</Form.Label>
+              <Form.Label style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                Product Price
+              </Form.Label>
               <Form.Control
                 type="number"
                 name="productPrice"
@@ -129,7 +204,9 @@ export const CreateProduct = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label style={{fontWeight:"bold", fontSize:"1.125rem"}}>Available Quantity </Form.Label>
+              <Form.Label style={{ fontWeight: "bold", fontSize: "1.125rem" }}>
+                Available Quantity{" "}
+              </Form.Label>
               <Form.Control
                 type="number"
                 placeholder="product available quantity"

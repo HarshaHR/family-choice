@@ -12,6 +12,8 @@ import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import { Profile } from './components/User/Profile';
 import ProductInfo from './components/Product/ProductInfo';
+import CreateCategory from './components/Product/CreateCategory';
+import CreateSubCategory from './components/Product/CreateSubCategory';
 
 
 function MyRoutes() {
@@ -34,10 +36,26 @@ function MyRoutes() {
               </RequireAuth>
             } />
           <Route
-            path="/shop/create"
+            path="/product/create"
             element={
               <RequireAuth>
                 <CreateProduct />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/product/category"
+            element={
+              <RequireAuth>
+                <CreateCategory />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/product/subcategory"
+            element={
+              <RequireAuth>
+                <CreateSubCategory />
               </RequireAuth>
             }
           />

@@ -52,19 +52,6 @@ export function Shop() {
 
   return (
     <Container>
-      <Row
-        style={{ marginTop: "3rem" }}
-        className="justify-content-xs-center justify-content-md-end"
-      >
-        <Button
-          variant="primary"
-          onClick={() => navigate("/shop/create")}
-          style={{ width: "auto" }}
-        >
-          Create
-        </Button>
-      </Row>
-      <hr />
       <Row >
         {productList.map((product, index) => {
           return <Productcard product={product} key={index} />;

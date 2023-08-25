@@ -41,6 +41,15 @@ export function Layout() {
             <Nav className="me-auto">
               <Nav.Link onClick={() => navigate('/')}>Home</Nav.Link>
               <Nav.Link onClick={() => navigate('/shop')}>Shop</Nav.Link>
+              <NavDropdown title="Product" id="basic-nav-dropdown">
+              <NavDropdown.Item  onClick={() => navigate("/product/create")}>Create Product</NavDropdown.Item>
+              <NavDropdown.Item  onClick={() => navigate("/product/category")}>
+                Add Category
+              </NavDropdown.Item>
+              <NavDropdown.Item  onClick={() => navigate("/product/subcategory")}>
+                Add Sub-Category
+              </NavDropdown.Item>
+            </NavDropdown>
               <Nav.Link onClick={() => navigate('/about')}>About Us</Nav.Link>
               <Nav.Link onClick={() => navigate('/contact')}>Contact Us</Nav.Link>
             </Nav>

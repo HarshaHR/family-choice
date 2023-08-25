@@ -9,13 +9,13 @@ type Product @model @auth(rules: [{ allow: public }] ) {
   availableQuantity: Int!
 }
 
-type Category @model {
+type Category @model @auth(rules: [{ allow: public }] ) {
   id: ID!
   categoryName: String!
   subCategory: [SubCategory] @hasMany(indexName: "byCategory", fields: ["id"])
 }
 
-type SubCategory @model {
+type SubCategory @model @auth(rules: [{ allow: public }] ) {
   id: ID!
   categoryID: ID! @index(name: "byCategory", sortKeyFields: ["subCategoryName"])
   subCategoryName: String!
