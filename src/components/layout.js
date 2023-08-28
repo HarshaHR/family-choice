@@ -44,10 +44,10 @@ export function Layout() {
               <NavDropdown title="Product" id="basic-nav-dropdown">
               <NavDropdown.Item  onClick={() => navigate("/product/create")}>Create Product</NavDropdown.Item>
               <NavDropdown.Item  onClick={() => navigate("/product/category")}>
-                Add Category
+                Category
               </NavDropdown.Item>
               <NavDropdown.Item  onClick={() => navigate("/product/subcategory")}>
-                Add Sub-Category
+                Sub-Category
               </NavDropdown.Item>
             </NavDropdown>
               <Nav.Link onClick={() => navigate('/about')}>About Us</Nav.Link>
